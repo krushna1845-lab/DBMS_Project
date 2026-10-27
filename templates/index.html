@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campus Care | Submit a request</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='portal.css') }}">
+</head>
+<body class="portal-body">
+  <header class="portal-nav"><a class="brand" href="/"><span class="brand-mark">C<span>.</span></span><span class="brand-name">campus<span>care</span></span></a><nav><a href="#track">Track a request</a><a class="admin-link" href="/admin">Admin sign in <span>↗</span></a></nav></header>
+  <main class="portal-main">
+    <section class="portal-hero"><div class="eyebrow"><span class="eyebrow-line"></span> CAMPUS HELPDESK</div><h1>Let’s get it <span>fixed.</span></h1><p>Report a campus maintenance issue and check its review result here.</p><div class="hero-tags"><span>01 &nbsp; Submit</span><i></i><span>02 &nbsp; Admin review</span><i></i><span>03 &nbsp; Track result</span></div></section>
+    <div class="portal-grid">
+      <section class="portal-card" id="submit">
+        <div class="portal-card-head"><div><div class="eyebrow mini-eyebrow">NEW REQUEST</div><h2>Tell us what needs attention</h2><p>Use an easy-to-remember ticket number so you can look up the response later.</p></div><span class="concept-icon">＋</span></div>
+        <form id="request-form" class="portal-form">
+          <div class="form-grid">
+            <label>Ticket number<input name="ticket_no" type="number" min="1" required placeholder="Choose a number, e.g. 8101"></label>
+            <label>Your name<input name="requester" maxlength="100" required placeholder="Full name"></label>
+            <label class="wide-field">Email address<input name="contact_email" type="email" maxlength="254" required placeholder="Use this same email when tracking"></label>
+            <label class="wide-field">Issue title<input name="title" maxlength="120" required placeholder="e.g. Projector will not turn on"></label>
+            <label>Category<input name="category" maxlength="60" required placeholder="e.g. Electrical"></label>
+            <label>Location<input name="location" maxlength="100" required placeholder="e.g. Room B-204"></label>
+            <label>Priority<select name="priority" required><option>Low</option><option selected>Medium</option><option>High</option></select></label>
+            <label class="wide-field">Issue details<textarea name="details" maxlength="500" rows="3" placeholder="Briefly describe the issue"></textarea></label>
+          </div>
+          <button class="button button-primary submit-button" type="submit">Submit for review <span>→</span></button>
+          <div class="inline-message" id="submit-message" role="status"></div>
+        </form>
+      </section>
+
+      <section class="portal-card track-card" id="track">
+        <div class="portal-card-head"><div><div class="eyebrow mini-eyebrow">REQUEST STATUS</div><h2>Check the admin’s decision</h2><p>Enter the ticket number and email you used in the request.</p></div><span class="concept-icon track-icon">⌕</span></div>
+        <form id="track-form" class="track-form">
+          <label>Ticket number<input name="ticket_no" type="number" min="1" required placeholder="e.g. 8101"></label>
+          <label>Email address<input name="email" type="email" required placeholder="you@example.edu"></label>
+          <button class="button button-outline submit-button" type="submit">Check status <span>→</span></button>
+        </form>
+        <div class="track-result" id="track-result" aria-live="polite"><div class="track-placeholder"><span>✓</span><div><strong>Your result will appear here</strong><p>After the admin reviews your request, you’ll see Approved or Rejected and their response.</p></div></div></div>
+        <div class="privacy-note"><span>◉</span> Only the matching ticket number and email can view the result.</div>
+      </section>
+    </div>
+    <footer class="portal-footer"><span>Campus Care <b>·</b> DBMS Lab Project</span><span>Python · Flask · MySQL</span></footer>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</body>
+</html>

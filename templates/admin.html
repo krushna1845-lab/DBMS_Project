@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campus Care | Admin review</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='portal.css') }}">
+</head>
+<body class="portal-body admin-body">
+  <header class="portal-nav"><a class="brand" href="/"><span class="brand-mark">C<span>.</span></span><span class="brand-name">campus<span>care</span></span></a><nav><a href="/">Requester page</a><a class="admin-link active-link" href="/admin">Admin review</a></nav></header>
+  <main class="admin-main">
+    <section class="admin-login-card" id="login-view">
+      <div class="concept-icon">⌑</div><div class="eyebrow mini-eyebrow">ADMIN ACCESS</div><h1>Review requests</h1>
+      <p>Sign in to approve or reject maintenance requests and send a response to the requester.</p>
+      <form id="login-form"><label>Admin password<input name="password" type="password" required autocomplete="current-password" placeholder="Enter admin password"></label><button class="button button-primary submit-button" type="submit">Sign in <span>→</span></button></form>
+      <div class="form-error" id="login-error" role="alert"></div><a class="back-link" href="/">← Back to requester page</a>
+    </section>
+
+    <section id="admin-view" hidden>
+      <div class="admin-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> CAMPUS HELPDESK</div><h1>Request <span>review.</span></h1><p>Approve or reject each request. Your response appears in the requester’s status lookup.</p></div><button id="logout-button" class="button button-outline">Sign out</button></div>
+      <div class="admin-stats">
+        <article class="stat-card"><div class="stat-top"><span>Waiting for review</span><span class="stat-icon amber">◷</span></div><div class="stat-value" id="pending-count">—</div><div class="stat-foot">Requests needing a decision</div></article>
+        <article class="stat-card"><div class="stat-top"><span>Approved</span><span class="stat-icon green">✓</span></div><div class="stat-value" id="approved-count">—</div><div class="stat-foot">Requests accepted</div></article>
+        <article class="stat-card"><div class="stat-top"><span>Rejected</span><span class="stat-icon violet">×</span></div><div class="stat-value" id="rejected-count">—</div><div class="stat-foot">Requests declined</div></article>
+        <article class="stat-card"><div class="stat-top"><span>Total requests</span><span class="stat-icon blue">▤</span></div><div class="stat-value" id="total-count">—</div><div class="stat-foot">All campus requests</div></article>
+      </div>
+      <section class="admin-queue panel"><div class="queue-heading"><div><h2>Requests to review</h2><p>Write a short response before approving or rejecting.</p></div><button class="button button-outline" id="reload-button">↻ Refresh</button></div><div id="request-list"><div class="loading">Loading requests…</div></div></section>
+      <footer class="portal-footer"><span>Campus Care Admin <b>·</b> DBMS Lab Project</span><a href="/">Open requester page</a></footer>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="{{ url_for('static', filename='admin.js') }}" defer></script>
+</body>
+</html>
